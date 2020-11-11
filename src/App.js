@@ -1,7 +1,7 @@
 import React from 'react'
 import mixerSVG from './assets/img/cementMixer.svg'
 import Header from "./components/Header";
-import Button from "./components/Button";
+import Categories from "./components/Categories";
 
 function App() {
   return (
@@ -11,16 +11,20 @@ function App() {
         <div className="content">
           <div className="container">
             <div className="content__top">
-              <div className="categories">
-                <ul>
-                  <li className="active">Все</li>
-                  <li>Черные</li>
-                  <li>Красные</li>
-                  <li>Желтые</li>
-                  <li>Зеленые</li>
-                  <li>Большие</li>
-                </ul>
-              </div>
+
+            <Categories
+            items={
+              [
+                  'Все',
+                  'Цветные',
+                  'Чёрно-белые',
+                  'Большие',
+                  'Маленькие',
+
+              ]
+            }
+            />
+
               <div className="sort">
                 <div className="sort__label">
                   <svg
