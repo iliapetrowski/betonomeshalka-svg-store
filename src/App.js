@@ -26,7 +26,16 @@ function App() {
                             }
                         />
 
-                        <SortPopup/>
+                        <SortPopup
+                            items={
+                                [
+                                    'цене',
+                                    'красоте',
+                                    'алфавиту',
+
+                                ]
+                            }
+                        />
                     </div>
                     <h2 className="content__title">Все бетономешалки</h2>
                     <div className="content__items">

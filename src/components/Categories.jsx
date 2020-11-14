@@ -8,10 +8,12 @@ const Categories = ({items}) => {
     return (
         <div className="categories">
             <ul>
-                {items.map((item, index) => <li
+                {items.map((item, index) =>
+                    <li
                     className={activeItem === index ? 'active' : ''}
                     onClick={()=>onSelectItem(index)}
-                    key={`${item}_${index}`}>{item}</li>)}
+                    key={`${item}_${index}`}>{item}
+                </li>)}
 
 
             </ul>
