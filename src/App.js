@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import {Route} from "react-router-dom";
 import Cart from "./pages/Cart";
+import axios from 'axios'
 
 
 function App() {
@@ -10,12 +11,11 @@ function App() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/db.json')
-            .then((resp)=> resp.json())
-            .then((json)=>{
-                setItems(json.mixers)
-                console.log(items)
-            })
+      axios.get('http://localhost:3000/db.json')
+          .then(({data})=> {
+              console.log(data)
+              setItems(data.mixers)
+          })
     }, []);
 
 

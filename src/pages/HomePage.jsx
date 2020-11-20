@@ -42,6 +42,7 @@ const HomePage = ({items}) => {
                                 key={obj.id}
 
 
+
                             />
                         ))
                     }

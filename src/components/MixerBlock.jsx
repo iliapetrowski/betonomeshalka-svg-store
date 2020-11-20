@@ -1,6 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
-const MixerBlock = ({price, name, imageUrl}) => {
+
+
+
+const MixerBlock = ({sizes, types, price, name, imageUrl}) => {
+    const mods = ['ручная', 'электрическая']
+    const availableSizes = [26,30,40]
+    const [activeType, setActiveType] = useState(0);
+    const onSelectType = (index) => {
+        setActiveType(index)
+    }
+    const [activeSize, setActiveSize] = useState(1);
+    const onSelectSize = (index) => {
+        setActiveSize(index)
+    }
+
     return (
         <div className="mixer-block">
             <img
@@ -11,13 +27,33 @@ const MixerBlock = ({price, name, imageUrl}) => {
             <h4 className="mixer-block__title">{name}</h4>
             <div className="mixer-block__selector">
                 <ul>
-                    <li className="active">быстрая</li>
-                    <li>медленная</li>
+                    {mods.map((mode, index) =>
+                        <li
+                            key={mode}
+                            onClick={()=> onSelectType(index)}
+                            className={classNames({
+                                active: activeType === index,
+                                disabled: !types.includes(index)
+                            })}>
+                            {mode}
+                        </li>
+                    )}
+
                 </ul>
                 <ul>
-                    <li className="active">40 л.</li>
-                    <li className='disable'>50 л.</li>
-                    <li>60 л.</li>
+                    {availableSizes.map((size, index) => <li
+                        onClick={()=> onSelectSize(index)}
+                        key={size}
+                        className={classNames({
+
+                            active: activeSize === index,
+                            disabled: availableSizes.includes(index)
+                        })}
+
+                    >
+                        {size}
+                    </li>)}
+
                 </ul>
             </div>
             <div className="mixer-block__bottom">
@@ -42,5 +78,18 @@ const MixerBlock = ({price, name, imageUrl}) => {
         </div>
     );
 };
+MixerBlock.propTypes = {
+    name: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    types: PropTypes.arrayOf([PropTypes.number]).isRequired,
+    sizes: PropTypes.arrayOf([PropTypes.number]).isRequired,
+
+}
+
+MixerBlock.defaultProps = {
+    types: [],
+    sizes: [],
+}
 
 export default MixerBlock;
